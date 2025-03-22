@@ -1,0 +1,218 @@
+Complexe a;
+Complexe b;
+Booleen c;
+Complexe d;
+a = 1.2+i3.4;
+b = 5.6+i6.7;
+c = true;
+afficher(c ? non c ? a : b : a);
+
+
+
+//lire
+
+Complexe z;
+lire(z);
+afficher(z);
+
+
+afficher(5.14:0.9234 == 5.14e^i0.9234 ? 5.14:0.9234 == 5.14+i0.9234 ? 1 : 2 : 3);
+
+// évaluation paresseuse (que le true est afficher, les false son ignorer)
+afficher(true ou false et false et false);
+
+// instruction conditionnelle
+Complexe x;
+lorsque (false) faire {
+    x = 3.1+i4.1;
+    afficher(x);
+};
+afficher(true);
+
+// instruction conditionnelle imbriquer
+Complexe x;
+lorsque (false) faire {
+    x = 3.1+i4.1;
+    afficher(x);
+    lorsque (true) faire {
+        x = 5.1+i6.1;
+        afficher(x);
+    };
+};
+afficher(true);
+
+// instruction conditionnelle avec sinon
+Complexe x;
+lorsque (false) faire {
+    x = 3.1+i4.1;
+    afficher(x);
+}
+autrement
+{
+    x = 5.1+i6.1;
+    afficher(x);
+};
+afficher(true);
+
+// instruction conditionnelle imbriquer avec sinon
+Complexe x;
+lorsque (true) faire {
+    x = 3.1+i4.1;
+    afficher(x);
+    lorsque (false) faire {
+        x = 5.1+i6.1;
+        afficher(x);
+    } autrement {
+        x = 7.1+i8.1;
+        afficher(x);
+    };
+}
+autrement
+{
+    x = 9.1;
+    afficher(x);
+};
+afficher(true);
+
+// instruction conditionnelle imbriquer et melanger
+Complexe x;
+lorsque (true) faire {
+    x = 3.1+i4.1;
+    afficher(x);
+    lorsque (true) faire {
+        x = 5.1+i6.1;
+        afficher(x);
+    }
+    autrement {
+        x = 7.1+i8.1;
+        afficher(x);
+    };
+};
+afficher(true);
+
+
+Complexe x;
+lorsque (false) faire {
+    x = 3.1+i4.1;
+    afficher(x);
+    lorsque (true) faire
+    {
+        x = 5.1+i6.1;
+        afficher(x);
+    };
+} autrement {
+          x = 7.1+i8.1;
+          afficher(x);
+      };
+afficher(true);
+
+
+// code en une seule ligne (exactement le meme que juste au dessus)
+Complexe x;lorsque (false) faire {x = 3.1+i4.1;afficher(x);lorsque (true) faire {x = 5.1+i6.1;afficher(x);};} autrement {x = 7.1+i8.1;afficher(x);};afficher(true);
+
+
+//repeter ⟨instr1⟩jusque ⟨exprB⟩sinon ⟨instr2⟩
+
+Complexe a;
+Complexe b;
+Booleen c;
+Complexe d;
+a = 2;
+c = true;
+d = 10;
+repeter {a = a + b; afficher(a); lire(b);} jusque (a == d) sinon {afficher(c);};afficher(a);
+
+
+//exemple2 des fonctions imbriquer repeter+lorsque
+
+Complexe a;
+Complexe b;
+Booleen c;
+Complexe d;
+Complexe e;
+a = 2;
+b = 2;
+c = true;
+d = 10;
+repeter {a = a + b; afficher(a);lorsque (false) faire {e = 3.1+i4.1;afficher(e);}autrement{e = 5.1+i6.1;afficher(e);};afficher(true);
+} jusque (a == d) sinon {afficher(c);};afficher(a);
+
+//exemple3 des fonctions imbriquer repeter+repeter Boucle infini
+Complexe a;
+Complexe b;
+Booleen c;
+Complexe d;
+a = 2;
+c = true;
+b = 2;
+d = 6;
+repeter {
+    a = a + b;
+    afficher(a);
+    continue;
+    repeter {
+    a = a + b;
+    afficher(a);
+} jusque (a == d) sinon {
+    afficher(c);
+};
+afficher(a);
+} jusque (a == d) sinon {
+    afficher(c);
+};
+afficher(a);
+
+//exemple4 des fonctions imbriquer repeter+repeter
+Complexe a;
+Complexe b;
+a = 0;
+repeter
+{
+        afficher(3.1+i4.1);
+        a = a + 1;
+        b = 0;
+         repeter
+        {
+                afficher(a-b);
+                b = b + 1;
+                lorsque (b == 3) faire
+                {
+                        break;
+                };
+        } jusque (a == b) sinon
+        {
+                afficher(false);
+        };
+} jusque (a == 10) sinon
+{
+        afficher(true);
+};
+afficher(5.1+i6.1);
+
+
+// exemple avec continue
+Complexe a;
+a = 0;
+repeter {
+    a = a + 1;
+    lorsque (a == 4) faire {
+        continue;
+    };
+    afficher(a);
+} jusque (a == 10) sinon {
+    afficher(true);
+};
+afficher(a);
+
+
+// Genere une erreur (on entre dans le sinon, car a n'est pas defini)
+repeter {
+    a = a + 1;
+    lorsque (a == 4) faire {
+        continue;
+    };
+    afficher(a);
+} jusque (a == 10) sinon {
+    afficher(true);
+};
+afficher(a);
